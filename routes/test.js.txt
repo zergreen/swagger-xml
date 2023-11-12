@@ -1,0 +1,19 @@
+const express = require('express');
+const router = express.Router()
+
+/**
+ * @swagger
+ * /fuck:
+ *   get:
+ *     summary: Get a list of examples
+ *     description: Retrieve a list of example items
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
+router.get('/fuck', (req, res) => {
+    // Your route logic goes here
+    res.json({ message: 'fuck you' });
+  }); 
+
+module.exports = router;
