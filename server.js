@@ -5,13 +5,13 @@ const routes = require('./routes/router.js'); // Import your router
 const app = express();
 
 // Use the router on the server
-app.use(routes);
+app.use('/marketing',routes);
 
 // Serve Swagger UI at /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
