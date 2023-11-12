@@ -2,6 +2,7 @@ const { log } = require('console');
 const express = require('express')
 const router = express.Router();
 const soap = require('soap')
+const {handleError} = require('../utility-function')
 
 const url = 'http://localhost:3000/ShippingService?wsdl';
 const url2 = 'http://localhost:3000/ProductService?wsdl';
@@ -51,10 +52,7 @@ router.post('/shipping-cost', (req, res) => {
   const { Shipping_cost } = req.body
   const args = {Shipping_cost};
   soap.createClient(url, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
+    handleError(err)
 
     client.shippingCost(args, function (err, result){
       if(err){
@@ -121,11 +119,7 @@ router.post('/new-product', (req, res) => {
   const args = req.body
   // res.status(200).json({end: req.body})
   soap.createClient(url2, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
-
+    handleError(err)
     client.newProduct(args, function (err, result){
       if(err){
         res.status(404).json({error: err})
@@ -172,15 +166,11 @@ router.post('/new-product', (req, res) => {
  *          description: xxx
  */
 router.post('/update-product', (req, res) => {
-  // const { Shipping_cost } = req.body
   console.log(req.body)
   const args = req.body
   // res.status(200).json({end: req.body})
   soap.createClient(url2, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
+    handleError(err)
 
     client.updateProduct(args, function (err, result){
       if(err){
@@ -224,10 +214,7 @@ router.post('/confirm-order', (req, res) => {
   const args = req.body
   // res.status(200).json({end: req.body})
   soap.createClient(url3, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
+    handleError(err)
 
     client.confirmOrders(args, function (err, result){
       if(err){
@@ -271,10 +258,7 @@ router.post('/cancel-order', (req, res) => {
   const args = req.body
   // res.status(200).json({end: req.body})
   soap.createClient(url3, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
+    handleError(err)
 
     client.cancelOrder(args, function (err, result){
       if(err){
@@ -318,10 +302,7 @@ router.post('/confirm-cancel-order', (req, res) => {
   const args = req.body
   // res.status(200).json({end: req.body})
   soap.createClient(url3, function (err, client){
-    if (err) {
-      console.error('Error creating SOAP client:', err);
-      return;
-    }
+    handleError(err)
 
     client.confirmCancelOrder(args, function (err, result){
       if(err){
