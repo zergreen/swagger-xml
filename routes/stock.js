@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const soap = require('soap')
-const {handleError} = require('../utility-function')
+const {handleError, logger} = require('../utility-function')
 
 const url = 'http://localhost:8000/stock-service/api/?wsdl';
 
@@ -84,9 +84,10 @@ router.post('/add-item', (req, res) => {
       handleError(err)
       client.AddItem(args, function (err, result){
         if(err){
+          console.log(err);
           res.status(404).json({error: err})
         }
-        console.log(result);
+        logger.info(`${req.method} ${req.url}`);
         res.status(200).json({info: result})
       })
     })
