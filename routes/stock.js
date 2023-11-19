@@ -33,7 +33,7 @@ router.get('/test', (req, res) =>{
 
 /**
  * @swagger
- * /stock/update-item:
+ * /stock/add-item:
  *    post:
  *      summary: Post add item with body
  *      tags:
@@ -42,8 +42,8 @@ router.get('/test', (req, res) =>{
  *        - application/json
  *      parameters:
  *        - in: body
- *          name: update-item
- *          description: The update-item to create
+ *          name: add-item
+ *          description: The add-item to create
  *          schema:
  *            type: object
  *            required: 
@@ -144,7 +144,7 @@ router.post('/update-item', (req, res) => {
   const args = req.body
   soap.createClient(url, function (err, client){
     handleError(err)
-    client.AddItem(args, function (err, result){
+    client.UpdateItem(args, function (err, result){
       if(err){
         console.log(err);
         res.status(404).json({error: err})
