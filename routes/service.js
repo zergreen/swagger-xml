@@ -507,6 +507,9 @@ router.post("/confirm-cancel-order", (req, res) => {
  *              Track_no:
  *                type: string
  *                default: IW4NT25L33P
+ *              Order_status:
+ *                type: string
+ *                default: "Pending"
  *              details:
  *                type: object
  *                default: [
